@@ -1,4 +1,4 @@
-module.exports = [
+module.exports = ({ env }) => [
   'strapi::errors',
   {
     name: 'strapi::security',
@@ -7,8 +7,20 @@ module.exports = [
         useDefaults: true,
         directives: {
           'connect-src': ["'self'", 'https:'],
-          'img-src': ["'self'", 'data:', 'blob:', 'res.cloudinary.com'],
-          'media-src': ["'self'", 'data:', 'blob:', 'res.cloudinary.com'],
+          'img-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            'res.cloudinary.com',
+            env('CF_PUBLIC_ACCESS_URL') ? env('CF_PUBLIC_ACCESS_URL').replace(/^https?:\/\//, '') : '',
+          ],
+          'media-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            'res.cloudinary.com',
+            env('CF_PUBLIC_ACCESS_URL') ? env('CF_PUBLIC_ACCESS_URL').replace(/^https?:\/\//, '') : '',
+          ],
           upgradeInsecureRequests: null,
         },
       },
