@@ -8,21 +8,44 @@ const { createCoreController } = require('@strapi/strapi').factories;
 
 module.exports = createCoreController('api::blog.blog', ({ strapi }) => ({
   async find(ctx) {
-    const { query } = ctx;
+    ctx.query = {
+      ...ctx.query,
+      populate: {
+        featuredImage: true,
+        categories: {
+          fields: ['name', 'slug', 'description']
+        },
+        tags: {
+          fields: ['name', 'slug']
+        },
+        author: {
+          fields: ['firstname', 'lastname', 'username']
+        }
+      }
+    };
 
-    const entity = await strapi.service('api::blog.blog').find(query);
-    const sanitizedEntity = await this.sanitizeOutput(entity, ctx);
-
-    return this.transformResponse(sanitizedEntity);
+    const { data, meta } = await super.find(ctx);
+    return { data, meta };
   },
 
   async findOne(ctx) {
-    const { id } = ctx.params;
-    const { query } = ctx;
+    ctx.query = {
+      ...ctx.query,
+      populate: {
+        featuredImage: true,
+        categories: {
+          fields: ['name', 'slug', 'description']
+        },
+        tags: {
+          fields: ['name', 'slug']
+        },
+        author: {
+          fields: ['firstname', 'lastname', 'username']
+        }
+      }
+    };
 
-    const entity = await strapi.service('api::blog.blog').findOne(id, query);
-    const sanitizedEntity = await this.sanitizeOutput(entity, ctx);
-
-    return this.transformResponse(sanitizedEntity);
+    const { data, meta } = await super.findOne(ctx);
+    return { data, meta };
   }
 })); 
