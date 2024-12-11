@@ -1,0 +1,85 @@
+{
+  "kind": "collectionType",
+  "collectionName": "directories",
+  "info": {
+    "singularName": "directory",
+    "pluralName": "directories",
+    "displayName": "Directory",
+    "description": "Directorio de funcionarios y contratistas"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstName": {
+      "type": "string",
+      "required": true
+    },
+    "lastName": {
+      "type": "string",
+      "required": true
+    },
+    "bio": {
+      "type": "text",
+      "required": true
+    },
+    "photo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": ["Male", "Female", "Other"],
+      "required": true
+    },
+    "position": {
+      "type": "string",
+      "required": true
+    },
+    "department": {
+      "type": "string",
+      "required": true
+    },
+    "grade": {
+      "type": "string"
+    },
+    "birthCountry": {
+      "type": "string",
+      "required": true
+    },
+    "birthState": {
+      "type": "string",
+      "required": true
+    },
+    "birthCity": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "professionalDegree": {
+      "type": "string",
+      "required": true
+    },
+    "additionalEducation": {
+      "type": "json"
+    },
+    "technicalDegree": {
+      "type": "string"
+    },
+    "workExperience": {
+      "type": "component",
+      "repeatable": true,
+      "component": "work.experience"
+    }
+  }
+} 

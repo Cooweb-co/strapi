@@ -803,7 +803,12 @@ export interface ApiBlogBlog extends Schema.CollectionType {
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     content: Attribute.RichText & Attribute.Required;
     slug: Attribute.UID<'api::blog.blog', 'title'> & Attribute.Required;
-    featuredImage: Attribute.Media;
+    featuredImage: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     excerpt: Attribute.Text &
       Attribute.SetMinMaxLength<{
         maxLength: 250;
@@ -863,6 +868,54 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
 }
 
+export interface ApiDirectoryDirectory extends Schema.CollectionType {
+  collectionName: 'directories';
+  info: {
+    singularName: 'directory';
+    pluralName: 'directories';
+    displayName: 'Directory';
+    description: 'Directorio de funcionarios y contratistas';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    firstName: Attribute.String & Attribute.Required;
+    lastName: Attribute.String & Attribute.Required;
+    bio: Attribute.Text & Attribute.Required;
+    photo: Attribute.Media & Attribute.Required;
+    gender: Attribute.Enumeration<['Male', 'Female', 'Other']> &
+      Attribute.Required;
+    position: Attribute.String & Attribute.Required;
+    department: Attribute.String & Attribute.Required;
+    grade: Attribute.String;
+    birthCountry: Attribute.String & Attribute.Required;
+    birthState: Attribute.String & Attribute.Required;
+    birthCity: Attribute.String & Attribute.Required;
+    email: Attribute.Email & Attribute.Required;
+    phone: Attribute.String & Attribute.Required;
+    professionalDegree: Attribute.String & Attribute.Required;
+    additionalEducation: Attribute.JSON;
+    technicalDegree: Attribute.String;
+    workExperience: Attribute.Component<'work.experience', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::directory.directory',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::directory.directory',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiTagTag extends Schema.CollectionType {
   collectionName: 'tags';
   info: {
@@ -908,6 +961,7 @@ declare module '@strapi/types' {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::blog.blog': ApiBlogBlog;
       'api::category.category': ApiCategoryCategory;
+      'api::directory.directory': ApiDirectoryDirectory;
       'api::tag.tag': ApiTagTag;
     }
   }

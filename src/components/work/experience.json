@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_work_experiences",
+  "info": {
+    "displayName": "Experience",
+    "description": "Experiencia laboral del funcionario"
+  },
+  "options": {},
+  "attributes": {
+    "position": {
+      "type": "string",
+      "required": true
+    },
+    "entity": {
+      "type": "string",
+      "required": true
+    },
+    "startDate": {
+      "type": "date",
+      "required": true
+    },
+    "endDate": {
+      "type": "date",
+      "required": true
+    }
+  }
+} 
