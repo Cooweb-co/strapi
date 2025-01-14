@@ -898,6 +898,14 @@ export interface ApiDirectoryDirectory extends Schema.CollectionType {
     additionalEducation: Attribute.JSON;
     technicalDegree: Attribute.String;
     workExperience: Attribute.Component<'work.experience', true>;
+    order: Attribute.Integer &
+      Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Attribute.DefaultTo<99>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

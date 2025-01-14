@@ -28,11 +28,17 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "gender": {
       "type": "enumeration",
-      "enum": ["Male", "Female", "Other"],
+      "enum": [
+        "Male",
+        "Female",
+        "Other"
+      ],
       "required": true
     },
     "position": {
@@ -80,6 +86,11 @@
       "type": "component",
       "repeatable": true,
       "component": "work.experience"
+    },
+    "order": {
+      "type": "integer",
+      "default": 99,
+      "min": 0
     }
   }
-} 
+}
