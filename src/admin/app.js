@@ -1,27 +1,39 @@
+import logoUrl from './extensions/logo_baq_verde.png';
+
 export default {
-    config: {
-      // Configuración del logo
-      auth: {
-        logo: '/uploads/logo_baq_verde.png',
-      },
-      // Logo en el menú principal
-      menu: {
-        logo: '/uploads/logo_baq_verde.png',
-      },
-      // Favicon del navegador
-      head: {
-        favicon: '/uploads/logo_baq_verde.png',
-      },
-      // Configuración de locales existente
-      locales: [
-        'es',
-      ],
-      // Traducciones personalizadas si las necesitas
-      translations: {
-        es: {
-          "app.components.LeftMenu.navbrand.title": "Barranquilla Verde",
-        },
+  config: {
+    locales: [
+      'es',
+    ],
+    
+    // Theme customization
+    theme: {
+      colors: {
+        primary100: '#f6ecfc',
+        primary200: '#e0c1f4',
+        primary500: '#ac73e6',
+        primary600: '#9736e8',
+        primary700: '#8312d1',
+        danger700: '#b72b1a'
       },
     },
-    bootstrap() {},
-  };
+    
+    // Custom logo
+    auth: {
+      logo: logoUrl
+    },
+    
+    // Menu logo
+    menu: {
+      logo: logoUrl
+    },
+    
+    // Header logo
+    head: {
+      favicon: logoUrl,
+    },
+  },
+  bootstrap(app) {
+    console.log(app);
+  },
+};
